@@ -96,7 +96,8 @@ static void drawSolarSystem ()
     glLoadIdentity ();
     
     // this is the interesting part: center the drawing in the window, expand to fit shorter edge
-    gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
+    //gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
+    glOrtho((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, -1000, 1000);
     
     // redraw the scene
     [self drawRect:[self bounds]];
