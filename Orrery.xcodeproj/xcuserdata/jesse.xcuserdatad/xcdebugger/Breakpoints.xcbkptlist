@@ -8,44 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415910122.575216"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
-         landmarkName = "sphere()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415910122.575216"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "25"
-         endingLineNumber = "25">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415910122.575216"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
-         landmarkName = "drawAnObject()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415910122.575216"
+         timestampString = "415928744.139248"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "15"
@@ -58,12 +21,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415910122.575216"
+         timestampString = "415928744.139248"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
-         landmarkName = "sphere()"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
+         landmarkName = "drawAnObject()"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
@@ -71,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415924759.011486"
+         timestampString = "415928867.300765"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "180"
-         endingLineNumber = "180"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415924759.011486"
+         timestampString = "415928867.300765"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
+         startingLineNumber = "65"
+         endingLineNumber = "65"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415924759.011486"
+         timestampString = "415928867.300765"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "177"
-         endingLineNumber = "177"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -109,14 +72,53 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415924759.011486"
+         filePath = "Orrery/Planets/POPlanet.m"
+         timestampString = "415928744.139248"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
-         landmarkName = "earth()"
-         landmarkType = "7">
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "-inclinationAngle:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Orrery/Planets/POPlanet.h"
+         timestampString = "415928744.139248"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
+         landmarkName = "-eccentricity:"
+         landmarkType = "4">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../../../../var/folders/4b/2b6pmhl918xbkc92vmnkzp8c0000gn/T/Users/jesse/Development/orrery/Orrery/Orrery/Planets/POPlanet.m"
+         timestampString = "415927903.288373"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
+         landmarkName = "@implementation POPlanet"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../../../../var/folders/4b/2b6pmhl918xbkc92vmnkzp8c0000gn/T/Users/jesse/Development/orrery/Orrery/Orrery/Planets/POPlanet.m"
+         timestampString = "415927904.590703"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
+         landmarkName = "-meanLongitude:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -19,6 +19,7 @@
 		883E04A118C94C7700A45508 /* OrreryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04A018C94C7700A45508 /* OrreryTests.m */; };
 		883E04B318C952F700A45508 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E04B218C952F700A45508 /* OpenGL.framework */; };
 		883E04B618C9534400A45508 /* POOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04B518C9534400A45508 /* POOpenGLView.m */; };
+		88F46A4F18CA89EC005E8A19 /* POPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F46A4E18CA89EC005E8A19 /* POPlanet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		883E04B218C952F700A45508 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		883E04B418C9534400A45508 /* POOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POOpenGLView.h; sourceTree = "<group>"; };
 		883E04B518C9534400A45508 /* POOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POOpenGLView.m; sourceTree = "<group>"; };
+		88F46A4D18CA89EC005E8A19 /* POPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POPlanet.h; path = Planets/POPlanet.h; sourceTree = "<group>"; };
+		88F46A4E18CA89EC005E8A19 /* POPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POPlanet.m; path = Planets/POPlanet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 		883E047C18C94C7700A45508 /* Orrery */ = {
 			isa = PBXGroup;
 			children = (
+				88F46A5018CA89FF005E8A19 /* Planets */,
 				883E04B418C9534400A45508 /* POOpenGLView.h */,
 				883E04B518C9534400A45508 /* POOpenGLView.m */,
 				883E048818C94C7700A45508 /* POAppDelegate.h */,
@@ -160,6 +164,15 @@
 				883E049C18C94C7700A45508 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88F46A5018CA89FF005E8A19 /* Planets */ = {
+			isa = PBXGroup;
+			children = (
+				88F46A4D18CA89EC005E8A19 /* POPlanet.h */,
+				88F46A4E18CA89EC005E8A19 /* POPlanet.m */,
+			);
+			name = Planets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +287,7 @@
 				883E048318C94C7700A45508 /* main.m in Sources */,
 				883E048A18C94C7700A45508 /* POAppDelegate.m in Sources */,
 				883E04B618C9534400A45508 /* POOpenGLView.m in Sources */,
+				88F46A4F18CA89EC005E8A19 /* POPlanet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +481,7 @@
 				883E04A618C94C7700A45508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		883E04A718C94C7700A45508 /* Build configuration list for PBXNativeTarget "OrreryTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +490,7 @@
 				883E04A918C94C7700A45508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

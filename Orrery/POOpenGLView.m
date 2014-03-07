@@ -7,6 +7,7 @@
 //
 
 #import "POOpenGLView.h"
+#import "POPlanet.h"
 #import <OpenGL/glu.h>
 
 
@@ -22,126 +23,15 @@ static void drawAnObject ()
     glEnd();
 }
 
-static void sphere(GLdouble x, GLdouble y, GLdouble radius)
-{
-    GLUquadric *quad = gluNewQuadric();
-    gluSphere(quad, radius, 100, 100);
-}
-
 static void yellow ()
 {
     glColor3f(1.0f, 0.85f, 0.35f);
 }
 
-static void blue ()
-{
-    glColor3f(0.0f, 0.85f, 0.85f);
-}
-
 static void sun ()
 {
-    sphere( 0, 0, 0.2);
-}
-
-static double newton_calculate_eccentric_anomaly_with_guess(double mean_anomaly, double eccentricity, double guess, int tries){
-    // we must approximate numerically:
-    // mean_anomaly = eccentric_anomaly - eccentricity * sin(eccentric_anomaly);
-    
-    // this is basically newton's method: http://en.wikipedia.org/wiki/Newton%27s_method
-    double error = guess - eccentricity * sin(mean_anomaly) - mean_anomaly; // ideally this is zero
-    double derivative_error = 1.0-eccentricity * cos(guess); // derivative of above formula
-    double new_guess = guess - error/derivative_error; // Newton's approxmiation of a better guess
-    
-    if(tries > 0){
-        return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, new_guess, tries - 1);
-    } else {
-        return new_guess;
-    }
-}
-
-static double newton_calculate_eccentric_anomaly(double mean_anomaly, double eccentricity){
-    double guess = (eccentricity<0.8) ? mean_anomaly : M_PI; // some random internet person suggested this
-    return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, guess, 100);
-}
-
-static double degrees(double radians)
-{
-    return (180 * radians / M_PI);
-}
-
-static double radians(double degrees)
-{
-    return fmod((M_PI * degrees / 180), 2*M_PI);
-}
-
-static void earth (double elapsed_time)
-{
-    // TODO: planet class
-    double centuries = elapsed_time / 100.0;
-
-    double semi_major_axis   = 1.00000261 + 0.00000562 * centuries; // Astronomical Units
-    double eccentricity      = 0.01671123 + -0.00004392 * centuries; // radians
-    double inclination_angle = radians(-0.00001531 + -0.01294668 * centuries);
-    double mean_longitude    = radians(100.46457166 + 35999.37244981 * centuries);
-    double longitude_of_perihelion = radians(102.93768193 +  0.32327364 * centuries);
-    double longitude_of_ascending_node = radians(0 + 0 * centuries); // zeros 'cause earth is special
-
-    
-    //double period = 1; // years
-    //double mean_anomaly = 2 * M_PI * elapsed_time / period;
-    
-    double argument_of_perihelion = longitude_of_perihelion - longitude_of_ascending_node;
-    double mean_anomaly = mean_longitude - longitude_of_perihelion;
-    
-    double eccentric_anomaly = newton_calculate_eccentric_anomaly(mean_anomaly, eccentricity);
-    double true_anomaly = 2 * atan( sqrt((1+eccentricity) / (1-eccentricity)) * tan(eccentric_anomaly/2) );
-    double radial_distance = semi_major_axis * ( 1 - eccentricity*eccentricity ) / ( 1 + eccentricity*cos(true_anomaly));
-    //NSLog(@"radial distatance: %f", radial_distance);
-    //NSLog(@"rotation: %f", degrees(true_anomaly));
-
-    // heliocentric coordinates in orbital plane
-    double x_ = semi_major_axis * ( cos(eccentric_anomaly) - eccentricity);
-    double y_ = semi_major_axis * sqrt(1 - eccentricity*eccentricity) * sin(eccentric_anomaly);
-    
-    // heliocentric coordinates in ecliptic plane
-    double x_ecl = (
-                    cos(argument_of_perihelion) * cos(longitude_of_ascending_node)
-                    - sin(argument_of_perihelion) * sin(longitude_of_ascending_node) * cos(inclination_angle)
-                   ) * x_
-                   + (
-                    -sin(argument_of_perihelion) * cos(longitude_of_ascending_node)
-                    - cos(argument_of_perihelion) * sin(longitude_of_ascending_node) * cos(inclination_angle)
-                   ) * y_;
-    
-    double y_ecl = (
-                    cos(argument_of_perihelion )* sin(longitude_of_ascending_node)
-                    + sin(argument_of_perihelion) * cos(longitude_of_ascending_node) * cos(inclination_angle)
-                    ) * x_
-                  + (
-                    -sin(argument_of_perihelion) * sin(longitude_of_ascending_node)
-                    + cos(argument_of_perihelion) * cos(longitude_of_ascending_node) * cos(inclination_angle)
-                   ) * y_;
-    double z_ecl = sin(argument_of_perihelion) * sin(inclination_angle) * x_
-                   + cos(argument_of_perihelion) * sin(inclination_angle) * y_;
-
-    
-    // heliocentric coordinates in equatorial plane
-    
-    
-    glPushMatrix();
-    
-    // using polar coordinates in orbital plane
-    //glRotated(degrees(true_anomaly),0,0,1); // uh, counterclockwise? is that correct?
-    //glTranslated(radial_distance,0,0);
-    
-    // using rectangular coordinates in orbital plane
-    //glTranslated(x_, y_, 0);
-    
-    // using heliocentric coordinates in ecliptic plane
-    glTranslated(x_ecl, y_ecl, z_ecl);
-    
-    sphere( 0.5, 0.5, 0.15);
-    glPopMatrix();
+    GLUquadric *quad = gluNewQuadric();
+    gluSphere(quad, 0.2, 100, 100);
 }
 
 
@@ -149,6 +39,7 @@ static void earth (double elapsed_time)
 
 static void drawSolarSystem ()
 {
+    POPlanet *earth = [POPlanet new];
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
     
@@ -162,8 +53,7 @@ static void drawSolarSystem ()
     {
         yellow();
         sun();
-        blue();
-        earth(0.75); // TODO: pass in a time since J2000 in years
+        [earth drawForTime:0];
     }
     glEnd();
     glPopMatrix();
