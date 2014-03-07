@@ -57,7 +57,7 @@ static void drawSolarSystem ()
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
     
-    //gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt (0.0, 0.0, 0.0, 0.0, 0.0, -100.0, 0.0, 1.0, 0.0);
     glScalef (1.0, 1.0, 1.0);
     
     glBegin(GL_QUAD_STRIP);
