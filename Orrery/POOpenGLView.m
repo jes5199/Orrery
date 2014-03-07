@@ -45,17 +45,27 @@ static void sun ()
 
 static void earth ()
 {
+    glPushMatrix();
+    glTranslated(0.2,0,0);
     sphere( 0.5, 0.5, 0.1);
+    glPopMatrix();
 }
 
 
 static void drawSolarSystem ()
 {
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glShadeModel (GL_FLAT);
+    
+    //gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    glScalef (1.0, 1.0, 1.0);
+    
     glBegin(GL_QUAD_STRIP);
     {
         yellow();
         sun();
         blue();
+        earth();
         earth();
     }
     glEnd();

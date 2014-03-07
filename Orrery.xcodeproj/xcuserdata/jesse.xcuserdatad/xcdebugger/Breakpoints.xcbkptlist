@@ -71,11 +71,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415869618.61266"
+         timestampString = "415907341.18733"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
+         startingLineNumber = "92"
+         endingLineNumber = "92"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415869618.61266"
+         timestampString = "415907341.18733"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415869618.61266"
+         timestampString = "415907341.18733"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
+         startingLineNumber = "89"
+         endingLineNumber = "89"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -110,11 +110,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415867292.478401"
+         timestampString = "415907341.18733"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
          landmarkName = "earth()"
          landmarkType = "7">
       </FileBreakpoint>
