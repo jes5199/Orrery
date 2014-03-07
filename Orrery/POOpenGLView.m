@@ -40,17 +40,27 @@ static void blue ()
 
 static void sun ()
 {
-    sphere( 5.0, 20.0, 0.2);
+    sphere( 0, 0, 0.2);
+}
+
+static void earth ()
+{
+    sphere( 0.5, 0.5, 0.1);
 }
 
 
 static void drawSolarSystem ()
 {
-    yellow();
-    sun();
-    blue();
-    //earth();
+    glBegin(GL_QUAD_STRIP);
+    {
+        yellow();
+        sun();
+        blue();
+        earth();
+    }
+    glEnd();
 }
+
 
 @implementation POOpenGLView
 
@@ -64,6 +74,20 @@ static void drawSolarSystem ()
     return self;
 }
 
+- (void)reshape
+{
+    int w = [self bounds].size.width;
+    int h = [self bounds].size.height;
+    int max = w;
+    if(h > max){max = h;}
+    int min = w;
+    if(h < min){min = h;}
+    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+    gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
+    [self drawRect:[self bounds]];
+}
 
 - (void)drawRect:(NSRect)dirtyRect
 {
