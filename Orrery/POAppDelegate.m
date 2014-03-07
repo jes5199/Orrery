@@ -7,18 +7,13 @@
 //
 
 #import "POAppDelegate.h"
-#include "POMasterViewController.h"
 
 @interface POAppDelegate()
-@property (nonatomic,strong) IBOutlet POMasterViewController *masterViewController;
 @end
 @implementation POAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.masterViewController = [[POMasterViewController alloc] initWithNibName:@"POMasterViewController" bundle:nil];
-    [self.window.contentView addSubview:self.masterViewController.view];
-    self.masterViewController.view.frame = ((NSView*)self.window.contentView).bounds;
 }
 
 @end

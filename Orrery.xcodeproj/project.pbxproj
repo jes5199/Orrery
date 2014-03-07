@@ -17,8 +17,6 @@
 		883E049618C94C7700A45508 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E047618C94C7700A45508 /* Cocoa.framework */; };
 		883E049E18C94C7700A45508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 883E049C18C94C7700A45508 /* InfoPlist.strings */; };
 		883E04A118C94C7700A45508 /* OrreryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04A018C94C7700A45508 /* OrreryTests.m */; };
-		883E04B018C94E4700A45508 /* POMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04AE18C94E4700A45508 /* POMasterViewController.m */; };
-		883E04B118C94E4700A45508 /* POMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883E04AF18C94E4700A45508 /* POMasterViewController.xib */; };
 		883E04B318C952F700A45508 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E04B218C952F700A45508 /* OpenGL.framework */; };
 		883E04B618C9534400A45508 /* POOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04B518C9534400A45508 /* POOpenGLView.m */; };
 /* End PBXBuildFile section */
@@ -53,9 +51,6 @@
 		883E049D18C94C7700A45508 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		883E049F18C94C7700A45508 /* OrreryTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrreryTests.h; sourceTree = "<group>"; };
 		883E04A018C94C7700A45508 /* OrreryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrreryTests.m; sourceTree = "<group>"; };
-		883E04AD18C94E4700A45508 /* POMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POMasterViewController.h; sourceTree = "<group>"; };
-		883E04AE18C94E4700A45508 /* POMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POMasterViewController.m; sourceTree = "<group>"; };
-		883E04AF18C94E4700A45508 /* POMasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = POMasterViewController.xib; sourceTree = "<group>"; };
 		883E04B218C952F700A45508 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		883E04B418C9534400A45508 /* POOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POOpenGLView.h; sourceTree = "<group>"; };
 		883E04B518C9534400A45508 /* POOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POOpenGLView.m; sourceTree = "<group>"; };
@@ -126,11 +121,8 @@
 		883E047C18C94C7700A45508 /* Orrery */ = {
 			isa = PBXGroup;
 			children = (
-				883E04AD18C94E4700A45508 /* POMasterViewController.h */,
-				883E04AE18C94E4700A45508 /* POMasterViewController.m */,
 				883E04B418C9534400A45508 /* POOpenGLView.h */,
 				883E04B518C9534400A45508 /* POOpenGLView.m */,
-				883E04AF18C94E4700A45508 /* POMasterViewController.xib */,
 				883E048818C94C7700A45508 /* POAppDelegate.h */,
 				883E048918C94C7700A45508 /* POAppDelegate.m */,
 				883E048B18C94C7700A45508 /* MainMenu.xib */,
@@ -245,7 +237,6 @@
 				883E048118C94C7700A45508 /* InfoPlist.strings in Resources */,
 				883E048718C94C7700A45508 /* Credits.rtf in Resources */,
 				883E048D18C94C7700A45508 /* MainMenu.xib in Resources */,
-				883E04B118C94E4700A45508 /* POMasterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +273,6 @@
 			files = (
 				883E048318C94C7700A45508 /* main.m in Sources */,
 				883E048A18C94C7700A45508 /* POAppDelegate.m in Sources */,
-				883E04B018C94E4700A45508 /* POMasterViewController.m in Sources */,
 				883E04B618C9534400A45508 /* POOpenGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +397,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Orrery/Orrery-Prefix.pch";
 				INFOPLIST_FILE = "Orrery/Orrery-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -419,6 +410,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Orrery/Orrery-Prefix.pch";
 				INFOPLIST_FILE = "Orrery/Orrery-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,6 +425,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Orrery/Orrery-Prefix.pch";
 				INFOPLIST_FILE = "OrreryTests/OrreryTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -448,6 +441,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Orrery/Orrery-Prefix.pch";
 				INFOPLIST_FILE = "OrreryTests/OrreryTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
