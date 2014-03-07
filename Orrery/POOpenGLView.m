@@ -50,7 +50,7 @@ static double newton_calculate_eccentric_anomaly_with_guess(double mean_anomaly,
     // this is basically newton's method: http://en.wikipedia.org/wiki/Newton%27s_method
     double error = guess - eccentricity * sin(mean_anomaly) - mean_anomaly; // ideally this is zero
     double derivative_error = 1.0-eccentricity * cos(guess); // derivative of above formula
-    double new_guess = error - error/derivative_error; // Newton's approxmiation of a better guess
+    double new_guess = guess - error/derivative_error; // Newton's approxmiation of a better guess
     
     if(tries > 0){
         return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, new_guess, tries - 1);
@@ -64,18 +64,29 @@ static double newton_calculate_eccentric_anomaly(double mean_anomaly, double ecc
     return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, guess, 100);
 }
 
+static double degrees(double radians)
+{
+    return (180 * radians / M_PI);
+}
 
-static void earth ()
+static void earth (double elapsed_time)
 {
     // TODO: planet class
     double period = 1; // years
     double eccentricity = 0.0167;
-    double elapsed_time = 0; // years ; FIXME: calculate this from actual date parameter
+    double semi_major_axis = 1.00000011; // Astronomical Units
+    
     double mean_anomaly = 2 * M_PI * elapsed_time / period;
     double eccentric_anomaly = newton_calculate_eccentric_anomaly(mean_anomaly, eccentricity);
+    double true_anomaly = 2 * atan( sqrt((1+eccentricity) / (1-eccentricity)) * tan(eccentric_anomaly/2) );
+    double radial_distance = semi_major_axis * ( 1 - eccentricity*eccentricity ) / ( 1 + eccentricity*cos(true_anomaly));
+    NSLog(@"radial distatance: %f", radial_distance);
+    NSLog(@"rotation: %f", degrees(true_anomaly));
+
     
     glPushMatrix();
-    glTranslated(0.2,0,0);
+    glRotated(degrees(true_anomaly),0,0,1);
+    glTranslated(radial_distance,0,0);
     sphere( 0.5, 0.5, 0.15);
     glPopMatrix();
 }
@@ -87,7 +98,7 @@ static void drawSolarSystem ()
     glShadeModel (GL_FLAT);
     
     gluLookAt (0.0, 0.0, 0.0, 0.0, 0.0, -100.0, 0.0, 1.0, 0.0);
-    glScalef (1.0, 1.0, 1.0);
+    glScalef (1, 1, 1);
     
     glPushMatrix();
     glTranslated(0,0,-2);
@@ -97,7 +108,7 @@ static void drawSolarSystem ()
         yellow();
         sun();
         blue();
-        earth();
+        earth(0.1); // TODO: pass in a time since perihelion in years
     }
     glEnd();
     glPopMatrix();
@@ -112,6 +123,9 @@ static void drawSolarSystem ()
     int h = [self bounds].size.height;
     int max = w; if(h > max){max = h;}
     int min = w; if(h < min){min = h;}
+    
+    double zoom = 2;
+    
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     
     glMatrixMode (GL_PROJECTION);
@@ -125,7 +139,7 @@ static void drawSolarSystem ()
     
     // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     //gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
-    glOrtho((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, 1, 10);
+    glOrtho((GLdouble) -zoom*w/min, (GLdouble) zoom*w/min, (GLdouble)-zoom*h/min, (GLdouble) zoom*h/min, 1, 10);
     
     //glFrustum((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, 1, 10);
     // redraw the scene
