@@ -69,28 +69,83 @@ static double degrees(double radians)
     return (180 * radians / M_PI);
 }
 
+static double radians(double degrees)
+{
+    return fmod((M_PI * degrees / 180), 2*M_PI);
+}
+
 static void earth (double elapsed_time)
 {
     // TODO: planet class
-    double period = 1; // years
-    double eccentricity = 0.0167;
-    double semi_major_axis = 1.00000011; // Astronomical Units
+    double centuries = elapsed_time / 100.0;
+
+    double semi_major_axis   = 1.00000261 + 0.00000562 * centuries; // Astronomical Units
+    double eccentricity      = 0.01671123 + -0.00004392 * centuries; // radians
+    double inclination_angle = radians(-0.00001531 + -0.01294668 * centuries);
+    double mean_longitude    = radians(100.46457166 + 35999.37244981 * centuries);
+    double longitude_of_perihelion = radians(102.93768193 +  0.32327364 * centuries);
+    double longitude_of_ascending_node = radians(0 + 0 * centuries); // zeros 'cause earth is special
+
     
-    double mean_anomaly = 2 * M_PI * elapsed_time / period;
+    //double period = 1; // years
+    //double mean_anomaly = 2 * M_PI * elapsed_time / period;
+    
+    double argument_of_perihelion = longitude_of_perihelion - longitude_of_ascending_node;
+    double mean_anomaly = mean_longitude - longitude_of_perihelion;
+    
     double eccentric_anomaly = newton_calculate_eccentric_anomaly(mean_anomaly, eccentricity);
     double true_anomaly = 2 * atan( sqrt((1+eccentricity) / (1-eccentricity)) * tan(eccentric_anomaly/2) );
     double radial_distance = semi_major_axis * ( 1 - eccentricity*eccentricity ) / ( 1 + eccentricity*cos(true_anomaly));
-    NSLog(@"radial distatance: %f", radial_distance);
-    NSLog(@"rotation: %f", degrees(true_anomaly));
+    //NSLog(@"radial distatance: %f", radial_distance);
+    //NSLog(@"rotation: %f", degrees(true_anomaly));
+
+    // heliocentric coordinates in orbital plane
+    double x_ = semi_major_axis * ( cos(eccentric_anomaly) - eccentricity);
+    double y_ = semi_major_axis * sqrt(1 - eccentricity*eccentricity) * sin(eccentric_anomaly);
+    
+    // heliocentric coordinates in ecliptic plane
+    double x_ecl = (
+                    cos(argument_of_perihelion) * cos(longitude_of_ascending_node)
+                    - sin(argument_of_perihelion) * sin(longitude_of_ascending_node) * cos(inclination_angle)
+                   ) * x_
+                   + (
+                    -sin(argument_of_perihelion) * cos(longitude_of_ascending_node)
+                    - cos(argument_of_perihelion) * sin(longitude_of_ascending_node) * cos(inclination_angle)
+                   ) * y_;
+    
+    double y_ecl = (
+                    cos(argument_of_perihelion )* sin(longitude_of_ascending_node)
+                    + sin(argument_of_perihelion) * cos(longitude_of_ascending_node) * cos(inclination_angle)
+                    ) * x_
+                  + (
+                    -sin(argument_of_perihelion) * sin(longitude_of_ascending_node)
+                    + cos(argument_of_perihelion) * cos(longitude_of_ascending_node) * cos(inclination_angle)
+                   ) * y_;
+    double z_ecl = sin(argument_of_perihelion) * sin(inclination_angle) * x_
+                   + cos(argument_of_perihelion) * sin(inclination_angle) * y_;
 
     
+    // heliocentric coordinates in equatorial plane
+    
+    
     glPushMatrix();
-    glRotated(degrees(true_anomaly),0,0,1);
-    glTranslated(radial_distance,0,0);
+    
+    // using polar coordinates in orbital plane
+    //glRotated(degrees(true_anomaly),0,0,1); // uh, counterclockwise? is that correct?
+    //glTranslated(radial_distance,0,0);
+    
+    // using rectangular coordinates in orbital plane
+    //glTranslated(x_, y_, 0);
+    
+    // using heliocentric coordinates in ecliptic plane
+    glTranslated(x_ecl, y_ecl, z_ecl);
+    
     sphere( 0.5, 0.5, 0.15);
     glPopMatrix();
 }
 
+
+// J2000.0 is January 1, 2000, 11:58:55.816 UTC
 
 static void drawSolarSystem ()
 {
@@ -108,7 +163,7 @@ static void drawSolarSystem ()
         yellow();
         sun();
         blue();
-        earth(0.1); // TODO: pass in a time since perihelion in years
+        earth(0.75); // TODO: pass in a time since J2000 in years
     }
     glEnd();
     glPopMatrix();
