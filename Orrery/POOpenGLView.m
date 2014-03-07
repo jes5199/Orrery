@@ -78,14 +78,17 @@ static void drawSolarSystem ()
 {
     int w = [self bounds].size.width;
     int h = [self bounds].size.height;
-    int max = w;
-    if(h > max){max = h;}
-    int min = w;
-    if(h < min){min = h;}
+    int max = w; if(h > max){max = h;}
+    int min = w; if(h < min){min = h;}
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+    
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
+    
+    // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
+    
+    // redraw the scene
     [self drawRect:[self bounds]];
 }
 
