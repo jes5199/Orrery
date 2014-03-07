@@ -47,7 +47,7 @@ static void earth ()
 {
     glPushMatrix();
     glTranslated(0.2,0,0);
-    sphere( 0.5, 0.5, 0.1);
+    sphere( 0.5, 0.5, 0.15);
     glPopMatrix();
 }
 
@@ -60,29 +60,22 @@ static void drawSolarSystem ()
     gluLookAt (0.0, 0.0, 0.0, 0.0, 0.0, -100.0, 0.0, 1.0, 0.0);
     glScalef (1.0, 1.0, 1.0);
     
+    glPushMatrix();
+    glTranslated(0,0,-2);
+    
     glBegin(GL_QUAD_STRIP);
     {
         yellow();
         sun();
         blue();
         earth();
-        earth();
     }
     glEnd();
+    glPopMatrix();
 }
 
 
 @implementation POOpenGLView
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
 
 - (void)reshape
 {
@@ -93,12 +86,19 @@ static void drawSolarSystem ()
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     
     glMatrixMode (GL_PROJECTION);
+    glEnable(GL_AUTO_NORMAL);
+    glEnable(GL_NORMALIZE);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc (GL_LESS);
+
     glLoadIdentity ();
     
     // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     //gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
-    glOrtho((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, -1000, 1000);
+    glOrtho((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, 1, 10);
     
+    //glFrustum((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, 1, 10);
     // redraw the scene
     [self drawRect:[self bounds]];
 }
@@ -106,7 +106,7 @@ static void drawSolarSystem ()
 - (void)drawRect:(NSRect)dirtyRect
 {
     glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     drawSolarSystem();
     glFlush();
 }
