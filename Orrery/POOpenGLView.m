@@ -7,18 +7,8 @@
 //
 
 #import "POOpenGLView.h"
+#import <OpenGL/glu.h>
 
-@implementation POOpenGLView
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
 
 static void drawAnObject ()
 {
@@ -32,11 +22,54 @@ static void drawAnObject ()
     glEnd();
 }
 
+static void sphere(GLdouble x, GLdouble y, GLdouble radius)
+{
+    GLUquadric *quad = gluNewQuadric();
+    gluSphere(quad, radius, 100, 100);
+}
+
+static void yellow ()
+{
+    glColor3f(1.0f, 0.85f, 0.35f);
+}
+
+static void blue ()
+{
+    glColor3f(0.0f, 0.85f, 0.85f);
+}
+
+static void sun ()
+{
+    sphere( 5.0, 20.0, 0.2);
+}
+
+
+static void drawSolarSystem ()
+{
+    yellow();
+    sun();
+    blue();
+    //earth();
+}
+
+@implementation POOpenGLView
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code here.
+    }
+    
+    return self;
+}
+
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-    drawAnObject();
+    drawSolarSystem();
     glFlush();
 }
 
