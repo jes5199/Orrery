@@ -43,8 +43,37 @@ static void sun ()
     sphere( 0, 0, 0.2);
 }
 
+static double newton_calculate_eccentric_anomaly_with_guess(double mean_anomaly, double eccentricity, double guess, int tries){
+    // we must approximate numerically:
+    // mean_anomaly = eccentric_anomaly - eccentricity * sin(eccentric_anomaly);
+    
+    // this is basically newton's method: http://en.wikipedia.org/wiki/Newton%27s_method
+    double error = guess - eccentricity * sin(mean_anomaly) - mean_anomaly; // ideally this is zero
+    double derivative_error = 1.0-eccentricity * cos(guess); // derivative of above formula
+    double new_guess = error - error/derivative_error; // Newton's approxmiation of a better guess
+    
+    if(tries > 0){
+        return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, new_guess, tries - 1);
+    } else {
+        return new_guess;
+    }
+}
+
+static double newton_calculate_eccentric_anomaly(double mean_anomaly, double eccentricity){
+    double guess = (eccentricity<0.8) ? mean_anomaly : M_PI; // some random internet person suggested this
+    return newton_calculate_eccentric_anomaly_with_guess(mean_anomaly, eccentricity, guess, 100);
+}
+
+
 static void earth ()
 {
+    // TODO: planet class
+    double period = 1; // years
+    double eccentricity = 0.0167;
+    double elapsed_time = 0; // years ; FIXME: calculate this from actual date parameter
+    double mean_anomaly = 2 * M_PI * elapsed_time / period;
+    double eccentric_anomaly = newton_calculate_eccentric_anomaly(mean_anomaly, eccentricity);
+    
     glPushMatrix();
     glTranslated(0.2,0,0);
     sphere( 0.5, 0.5, 0.15);
