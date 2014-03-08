@@ -69,7 +69,7 @@ int animateTowardDesiredScale(int scale, int desired_scale){
 {
     static int tilt = 0;
     static int sun_scale = 50;
-    static int planet_scale = 50;
+    static int planet_scale = 2000;
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -95,7 +95,7 @@ int animateTowardDesiredScale(int scale, int desired_scale){
 
     int target_tilt = 0;
     if( [[[popup selectedItem] title] isEqualToString:@"Side"] ){
-        target_tilt = 90;
+        target_tilt = -90;
     }
     if(target_tilt > tilt){
         tilt += 5;
