@@ -46,5 +46,10 @@
 }
 
 
+- (double) meanRadius
+{
+    return 3390.0;
+}
+
 
 @end

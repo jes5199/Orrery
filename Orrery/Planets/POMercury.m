@@ -46,4 +46,9 @@
     return @[@0.65f, @0.65f, @0.55f];
 }
 
+- (double) meanRadius
+{
+    return 2439.7;
+}
+
 @end

@@ -12,7 +12,7 @@
 
 - (NSArray*) coordinatesAtTime: (double)elapsed_time;
 - (NSArray*) color;
-- (void) drawForTime:(double)years;
+- (void) drawForTime:(double)years atScale:(double)scale;
 
 - (double) semiMajorAxisAt:(double) centuries;
 - (double) eccentricity:(double) centuries;

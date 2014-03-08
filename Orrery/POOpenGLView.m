@@ -28,19 +28,15 @@ static void drawAnObject ()
     glEnd();
 }
 
-static void yellow ()
-{
-    glColor3f(1.0f, 0.85f, 0.35f);
-}
-
-static void sun ()
+static void sun (double scale)
 {
     GLfloat color[] = { 1.0, 0.85, 0.35, 1.0 };
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
-    yellow();
+    glColor3f(1.0f, 0.85f, 0.35f);
 
     GLUquadric *quad = gluNewQuadric();
-    gluSphere(quad, 0.2, 100, 100);
+    double radius = 696000.0 / (149597871.0/scale);
+    gluSphere(quad, radius, 100, 100);
     
     GLfloat black[] = { 0.0, 0.0, 0.0, 1.0 };
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, black);
@@ -64,6 +60,7 @@ static void sun ()
     POPlanet *venus = [POVenus new];
     POPlanet *earth = [POPlanet new];
     POPlanet *mars = [POMars new];
+    NSArray *planets = @[ mercury, venus, earth, mars ];
     
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
@@ -91,17 +88,15 @@ static void sun ()
 
     glBegin(GL_QUAD_STRIP);
     {
-        glDisable(GL_LIGHTING);
-        sun();
-        glEnable(GL_LIGHTING);
+        double sun_scale = 50;
+        double planet_scale = 2000;
+        sun(sun_scale);
         GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
         glLightfv(GL_LIGHT0, GL_POSITION, light_position);
         
-
-        [mercury drawForTime:elapsed_years];
-        [venus drawForTime:elapsed_years];
-        [earth drawForTime:elapsed_years];
-        [mars drawForTime:elapsed_years];
+        for (POPlanet* planet in planets){
+            [planet drawForTime:elapsed_years atScale:planet_scale];
+        }
     }
     
 
@@ -144,7 +139,7 @@ static void sun ()
     glLoadIdentity ();
 
 
-    //glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     
 

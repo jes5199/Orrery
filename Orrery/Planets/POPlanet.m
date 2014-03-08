@@ -69,6 +69,11 @@ static double degrees(double radians)
     return radians(0 + 0 * centuries); // zeros 'cause earth is special
 }
 
+- (double) meanRadius
+{
+    return 6371.0;
+}
+
 - (NSArray*) coordinatesAtTime: (double)elapsed_time
 {
     double centuries = elapsed_time / 100.0;
@@ -133,12 +138,12 @@ static double degrees(double radians)
     return @[@0.0f, @0.85f, @0.85f];
 }
 
-- (double) radius
+- (double) radiusAtScale:(double)scale
 {
-    return 0.1;
+    return [self meanRadius] / (149597871/scale); // km to astronomical units
 }
 
-- (void) drawForTime:(double)years
+- (void) drawForTime:(double)years atScale:(double)scale
 {
     NSArray *coordinates = [self coordinatesAtTime:years];
     NSArray *color = [self color];
@@ -147,7 +152,7 @@ static double degrees(double radians)
     double y = [[coordinates objectAtIndex:1] doubleValue];
     double z = [[coordinates objectAtIndex:2] doubleValue];
     
-    double radius = [self radius];
+    double radius = [self radiusAtScale:scale];
 
     double r = [[color objectAtIndex:0] doubleValue];
     double g = [[color objectAtIndex:1] doubleValue];
