@@ -19,6 +19,10 @@
 		883E04A118C94C7700A45508 /* OrreryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04A018C94C7700A45508 /* OrreryTests.m */; };
 		883E04B318C952F700A45508 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E04B218C952F700A45508 /* OpenGL.framework */; };
 		883E04B618C9534400A45508 /* POOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E04B518C9534400A45508 /* POOpenGLView.m */; };
+		8876E5F318CAA1980005657E /* POMars.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E5F218CAA1980005657E /* POMars.m */; };
+		8876E5F618CAA31D0005657E /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 8876E5F518CAA31D0005657E /* util.c */; };
+		8876E5F918CAA64E0005657E /* POVenus.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E5F818CAA64E0005657E /* POVenus.m */; };
+		8876E5FC18CAB10C0005657E /* POMercury.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876E5FB18CAB10C0005657E /* POMercury.m */; };
 		88F46A4F18CA89EC005E8A19 /* POPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F46A4E18CA89EC005E8A19 /* POPlanet.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,14 @@
 		883E04B218C952F700A45508 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		883E04B418C9534400A45508 /* POOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POOpenGLView.h; sourceTree = "<group>"; };
 		883E04B518C9534400A45508 /* POOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POOpenGLView.m; sourceTree = "<group>"; };
+		8876E5F118CAA1980005657E /* POMars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POMars.h; path = Planets/POMars.h; sourceTree = "<group>"; };
+		8876E5F218CAA1980005657E /* POMars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POMars.m; path = Planets/POMars.m; sourceTree = "<group>"; };
+		8876E5F418CAA2FE0005657E /* util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		8876E5F518CAA31D0005657E /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		8876E5F718CAA64E0005657E /* POVenus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POVenus.h; path = Planets/POVenus.h; sourceTree = "<group>"; };
+		8876E5F818CAA64E0005657E /* POVenus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POVenus.m; path = Planets/POVenus.m; sourceTree = "<group>"; };
+		8876E5FA18CAB10C0005657E /* POMercury.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POMercury.h; path = Planets/POMercury.h; sourceTree = "<group>"; };
+		8876E5FB18CAB10C0005657E /* POMercury.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POMercury.m; path = Planets/POMercury.m; sourceTree = "<group>"; };
 		88F46A4D18CA89EC005E8A19 /* POPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POPlanet.h; path = Planets/POPlanet.h; sourceTree = "<group>"; };
 		88F46A4E18CA89EC005E8A19 /* POPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POPlanet.m; path = Planets/POPlanet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +143,8 @@
 				883E048918C94C7700A45508 /* POAppDelegate.m */,
 				883E048B18C94C7700A45508 /* MainMenu.xib */,
 				883E047D18C94C7700A45508 /* Supporting Files */,
+				8876E5F418CAA2FE0005657E /* util.h */,
+				8876E5F518CAA31D0005657E /* util.c */,
 			);
 			path = Orrery;
 			sourceTree = "<group>";
@@ -171,6 +185,12 @@
 			children = (
 				88F46A4D18CA89EC005E8A19 /* POPlanet.h */,
 				88F46A4E18CA89EC005E8A19 /* POPlanet.m */,
+				8876E5F118CAA1980005657E /* POMars.h */,
+				8876E5F218CAA1980005657E /* POMars.m */,
+				8876E5F718CAA64E0005657E /* POVenus.h */,
+				8876E5F818CAA64E0005657E /* POVenus.m */,
+				8876E5FA18CAB10C0005657E /* POMercury.h */,
+				8876E5FB18CAB10C0005657E /* POMercury.m */,
 			);
 			name = Planets;
 			sourceTree = "<group>";
@@ -288,6 +308,10 @@
 				883E048A18C94C7700A45508 /* POAppDelegate.m in Sources */,
 				883E04B618C9534400A45508 /* POOpenGLView.m in Sources */,
 				88F46A4F18CA89EC005E8A19 /* POPlanet.m in Sources */,
+				8876E5F318CAA1980005657E /* POMars.m in Sources */,
+				8876E5F618CAA31D0005657E /* util.c in Sources */,
+				8876E5F918CAA64E0005657E /* POVenus.m in Sources */,
+				8876E5FC18CAB10C0005657E /* POMercury.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

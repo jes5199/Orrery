@@ -14,7 +14,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    [NSTimer scheduledTimerWithTimeInterval:0.1
                                      target:self
                                    selector:@selector(handleSecondsTimer:)
                                    userInfo:nil
@@ -27,15 +27,27 @@
     if ([[self checkboxNow] state]) {
         [[self datePicker] setDateValue:[NSDate date]];
     }
+    if ([[self checkboxGoFast] state]) {
+        NSDate *was = [[self datePicker] dateValue];
+        [[self datePicker] setDateValue:[was dateByAddingTimeInterval: 7*60*60*24]];
+    }
 }
 
 - (IBAction) handleDateChange:(NSDatePicker*)picker{
     [[self checkboxNow] setState:0];
 }
 
+- (IBAction) handleGoFastChange:(NSButton*)gofast{
+    if ([[self checkboxGoFast] state]) {
+        [[self checkboxNow] setState:0];
+    }
+}
+
+
 - (IBAction) handleNowChange:(NSButton*)checkbox{
     if ([checkbox state]) {
         [[self datePicker] setDateValue:[NSDate date]];
+        [[self checkboxGoFast] setState:0];
     }
 }
 

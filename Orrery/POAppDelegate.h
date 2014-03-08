@@ -15,9 +15,11 @@
 @property (assign) IBOutlet POOpenGLView *glview;
 @property (assign) IBOutlet NSDatePicker *datePicker;
 @property (assign) IBOutlet NSButton *checkboxNow;
+@property (assign) IBOutlet NSButton *checkboxGoFast;
 
 - (void) handleSecondsTimer:(NSTimer*)timer;
 - (IBAction) handleDateChange:(NSDatePicker*)picker;
 - (IBAction) handleNowChange:(NSButton*)checkbox;
+- (IBAction) handleGoFastChange:(NSButton*)gofast;
 
 @end
