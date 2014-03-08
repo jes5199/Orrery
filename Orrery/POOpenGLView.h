@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #include <OpenGL/gl.h>
 
-@interface POOpenGLView : NSOpenGLView
+@interface POOpenGLView : NSOpenGLView {
+    IBOutlet id datePicker;
+}
+-(void) drawSolarSystem;
 
 @end

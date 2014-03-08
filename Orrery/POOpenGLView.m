@@ -34,11 +34,19 @@ static void sun ()
     gluSphere(quad, 0.2, 100, 100);
 }
 
+@implementation POOpenGLView
 
 // J2000.0 is January 1, 2000, 11:58:55.816 UTC
 
-static void drawSolarSystem ()
+- (void) drawSolarSystem
 {
+    double epoch = [[NSDate dateWithString:@"January 1, 2000, 11:58:55.816 UTC"] timeIntervalSince1970];
+    double nowish = [[NSDate date] timeIntervalSince1970];
+    nowish = [[datePicker dateValue] timeIntervalSince1970];
+    
+    double elapsed_seconds = (nowish - epoch);
+    double elapsed_years = elapsed_seconds / 31557600;
+    
     POPlanet *earth = [POPlanet new];
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
@@ -53,14 +61,13 @@ static void drawSolarSystem ()
     {
         yellow();
         sun();
-        [earth drawForTime:0];
+        [earth drawForTime:elapsed_years];
     }
     glEnd();
     glPopMatrix();
 }
 
 
-@implementation POOpenGLView
 
 - (void)reshape
 {
@@ -95,7 +102,7 @@ static void drawSolarSystem ()
 {
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    drawSolarSystem();
+    [self drawSolarSystem];
     glFlush();
 }
 
