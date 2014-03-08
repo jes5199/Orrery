@@ -8,6 +8,7 @@
 
 #import "POPlanet.h"
 #import <OpenGL/glu.h>
+#import "util.h"
 
 @implementation POPlanet
 static double newton_calculate_eccentric_anomaly_with_guess(double mean_anomaly, double eccentricity, double guess, int tries){
@@ -34,11 +35,6 @@ static double newton_calculate_eccentric_anomaly(double mean_anomaly, double ecc
 static double degrees(double radians)
 {
     return (180 * radians / M_PI);
-}
-
-static double radians(double degrees)
-{
-    return fmod((M_PI * degrees / 180), 2*M_PI);
 }
 
 - (double) semiMajorAxisAt:(double) centuries

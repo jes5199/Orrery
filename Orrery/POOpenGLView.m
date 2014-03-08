@@ -8,6 +8,7 @@
 
 #import "POOpenGLView.h"
 #import "POPlanet.h"
+#import "POMars.h"
 #import <OpenGL/glu.h>
 
 
@@ -48,6 +49,7 @@ static void sun ()
     double elapsed_years = elapsed_seconds / 31557600;
     
     POPlanet *earth = [POPlanet new];
+    POPlanet *mars = [POMars new];
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
     
@@ -59,9 +61,9 @@ static void sun ()
     
     glBegin(GL_QUAD_STRIP);
     {
-        yellow();
-        sun();
+        yellow(); sun();
         [earth drawForTime:elapsed_years];
+        [mars drawForTime:elapsed_years];
     }
     glEnd();
     glPopMatrix();

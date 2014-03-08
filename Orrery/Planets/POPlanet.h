@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-static double radians(double degrees);
-
 @interface POPlanet : NSObject
+
 - (NSArray*) coordinatesAtTime: (double)elapsed_time;
 - (NSArray*) color;
 - (void) drawForTime:(double)years;
