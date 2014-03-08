@@ -37,6 +37,8 @@ static double degrees(double radians)
     return (180 * radians / M_PI);
 }
 
+
+// these base implementations are actually the numbers for the earth-moon barycenter
 - (double) semiMajorAxisAt:(double) centuries
 {
     return (1.00000261 + 0.00000562 * centuries); // Astronomical Units
@@ -64,19 +66,21 @@ static double degrees(double radians)
 
 - (double)longitudeOfAscendingNode:(double)centuries
 {
-    return radians(0 + 0 * centuries);
+    return radians(0 + 0 * centuries); // zeros 'cause earth is special
 }
 
 - (NSArray*) coordinatesAtTime: (double)elapsed_time
 {
     double centuries = elapsed_time / 100.0;
     
+    //basically I'm doing exactly what is suggested at http://ssd.jpl.nasa.gov/txt/aprx_pos_planets.pdf
+    
     double semi_major_axis   = [self semiMajorAxisAt:centuries];
     double eccentricity      = [self eccentricity:centuries];
     double inclination_angle = [self inclinationAngle:centuries];
     double mean_longitude    = [self meanLongitude:centuries];
     double longitude_of_perihelion = [self longitudeOfPerihelion:centuries];
-    double longitude_of_ascending_node = [self longitudeOfAscendingNode:centuries]; // zeros 'cause earth is special
+    double longitude_of_ascending_node = [self longitudeOfAscendingNode:centuries];
     
     
     //double period = 1; // years
