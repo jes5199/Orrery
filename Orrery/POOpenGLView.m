@@ -45,6 +45,7 @@ static void sun ()
 
 - (void) drawSolarSystem
 {
+    static tilt = 0;
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -59,12 +60,25 @@ static void sun ()
     
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
-    
+
     gluLookAt (0.0, 0.0, 0.0, 0.0, 0.0, -100.0, 0.0, 1.0, 0.0);
     glScalef (1, 1, 1);
     
     glPushMatrix();
-    glTranslated(0,0,-2);
+
+    glTranslated(0,0,-20);
+    int target_tilt = 0;
+    if( [[[popup selectedItem] title] isEqualToString:@"Side"] ){
+        target_tilt = 90;
+    }
+    if(target_tilt > tilt){
+        tilt += 5;
+    }
+    if(target_tilt < tilt){
+        tilt -= 5;
+    }
+    glRotated(tilt,1,0,0);
+
     
     glBegin(GL_QUAD_STRIP);
     {
@@ -102,11 +116,8 @@ static void sun ()
     
     // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     //gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
-    glOrtho((GLdouble) -zoom*w/min, (GLdouble) zoom*w/min, (GLdouble)-zoom*h/min, (GLdouble) zoom*h/min, 1, 10);
+    glOrtho((GLdouble) -zoom*w/min, (GLdouble) zoom*w/min, (GLdouble)-zoom*h/min, (GLdouble) zoom*h/min, 1, 100);
     
-    //glFrustum((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min, 1, 10);
-    // redraw the scene
-    [self drawRect:[self bounds]];
 }
 
 - (void)drawRect:(NSRect)dirtyRect

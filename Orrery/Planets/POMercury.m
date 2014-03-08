@@ -43,7 +43,7 @@
 
 - (NSArray *)color
 {
-    return @[@0.85f, @0.85f, @0.75f];
+    return @[@0.65f, @0.65f, @0.55f];
 }
 
 @end

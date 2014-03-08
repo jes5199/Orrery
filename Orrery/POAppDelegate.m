@@ -31,6 +31,7 @@
         NSDate *was = [[self datePicker] dateValue];
         [[self datePicker] setDateValue:[was dateByAddingTimeInterval: 7*60*60*24]];
     }
+    [[self glview] setNeedsDisplay:YES];
 }
 
 - (IBAction) handleDateChange:(NSDatePicker*)picker{
