@@ -49,6 +49,7 @@ static void sun (double scale)
 - (void) drawSolarSystem
 {
     static int tilt = 0;
+    static int sun_scale = 50;
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -85,22 +86,24 @@ static void sun (double scale)
     glRotated(tilt,1,0,0);
     
 
-
-    glBegin(GL_QUAD_STRIP);
-    {
-        double sun_scale = [[sunZoomPicker selectedItem] tag];
-        double planet_scale = 2000;
-        sun(sun_scale);
-        GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
-        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-        
-        for (POPlanet* planet in planets){
-            [planet drawForTime:elapsed_years atScale:planet_scale];
-        }
+    int desired_sun_scale = [[sunZoomPicker selectedItem] tag];
+    if (sun_scale < desired_sun_scale) {
+        sun_scale += desired_sun_scale / 10;
+    } else if (sun_scale > desired_sun_scale){
+        sun_scale -= sun_scale / 10;
+        sun_scale -= 1;
+        if(sun_scale < desired_sun_scale){ sun_scale = desired_sun_scale; };
     }
     
+    double planet_scale = 2000;
+    sun(sun_scale);
+    GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    
+    for (POPlanet* planet in planets){
+        [planet drawForTime:elapsed_years atScale:planet_scale];
+    }    
 
-    glEnd();
     glPopMatrix();
     
 
