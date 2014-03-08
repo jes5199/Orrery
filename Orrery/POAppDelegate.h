@@ -7,10 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "POOpenGLView.h"
 
 @interface POAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet POOpenGLView *glview;
+@property (assign) IBOutlet NSDatePicker *datePicker;
+@property (assign) IBOutlet NSButton *checkboxNow;
 
+- (void) handleSecondsTimer:(NSTimer*)timer;
+- (IBAction) handleDateChange:(NSDatePicker*)picker;
+- (IBAction) handleNowChange:(NSButton*)checkbox;
 
 @end
