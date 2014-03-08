@@ -9,6 +9,8 @@
 #import "POOpenGLView.h"
 #import "POPlanet.h"
 #import "POMars.h"
+#import "POVenus.h"
+
 #import <OpenGL/glu.h>
 
 
@@ -50,6 +52,8 @@ static void sun ()
     
     POPlanet *earth = [POPlanet new];
     POPlanet *mars = [POMars new];
+    POPlanet *venus = [POVenus new];
+    
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
     
@@ -62,6 +66,7 @@ static void sun ()
     glBegin(GL_QUAD_STRIP);
     {
         yellow(); sun();
+        [venus drawForTime:elapsed_years];
         [earth drawForTime:elapsed_years];
         [mars drawForTime:elapsed_years];
     }
