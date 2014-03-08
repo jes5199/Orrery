@@ -30,26 +30,46 @@ static void drawAnObject ()
 
 static void sun (double scale)
 {
+    // the sun glows yellow
     GLfloat color[] = { 1.0, 0.85, 0.35, 1.0 };
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+    
+    // the sun is yellow anyway
     glColor3f(1.0f, 0.85f, 0.35f);
 
+    // the sun is a big sphere
     GLUquadric *quad = gluNewQuadric();
     double radius = 696000.0 / (149597871.0/scale);
     gluSphere(quad, radius, 100, 100);
     
+    // the sun casts light on the planets
+    GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    
+    // don't leak the emission setting
     GLfloat black[] = { 0.0, 0.0, 0.0, 1.0 };
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, black);
 }
 
-@implementation POOpenGLView
+int animateTowardDesiredScale(int scale, int desired_scale){
+    if (scale < desired_scale) {
+        scale += desired_scale / 10;
+    } else if (scale > desired_scale){
+        scale -= scale / 10;
+        scale -= 1;
+        if(scale < desired_scale){ scale = desired_scale; };
+    }
 
-// J2000.0 is January 1, 2000, 11:58:55.816 UTC
+    return scale;
+}
+
+@implementation POOpenGLView
 
 - (void) drawSolarSystem
 {
     static int tilt = 0;
     static int sun_scale = 50;
+    static int planet_scale = 50;
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -86,19 +106,10 @@ static void sun (double scale)
     glRotated(tilt,1,0,0);
     
 
-    int desired_sun_scale = [[sunZoomPicker selectedItem] tag];
-    if (sun_scale < desired_sun_scale) {
-        sun_scale += desired_sun_scale / 10;
-    } else if (sun_scale > desired_sun_scale){
-        sun_scale -= sun_scale / 10;
-        sun_scale -= 1;
-        if(sun_scale < desired_sun_scale){ sun_scale = desired_sun_scale; };
-    }
-    
-    double planet_scale = 2000;
+    sun_scale = animateTowardDesiredScale(sun_scale, [[sunZoomPicker selectedItem] tag]);
+    planet_scale = animateTowardDesiredScale(planet_scale, [[planetZoomPicker selectedItem] tag]);
+
     sun(sun_scale);
-    GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     
     for (POPlanet* planet in planets){
         [planet drawForTime:elapsed_years atScale:planet_scale];
@@ -125,22 +136,18 @@ static void sun (double scale)
     glEnable(GL_AUTO_NORMAL);
     glEnable(GL_NORMALIZE);
     glEnable(GL_COLOR_MATERIAL);
-
     glShadeModel (GL_SMOOTH);
     
-
     glEnable(GL_DEPTH_TEST);
     glDepthFunc (GL_LESS);
 
-    
-    // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
-
+    // this is the interesting part: center the drawing in the window, expand to fit shorter edge
     glOrtho((GLdouble) -zoom*w/min, (GLdouble) zoom*w/min, (GLdouble)-zoom*h/min, (GLdouble) zoom*h/min, 1, 100);
+
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
-
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);

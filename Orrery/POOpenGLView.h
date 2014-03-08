@@ -13,6 +13,8 @@
     IBOutlet id datePicker;
     IBOutlet id popup;
     IBOutlet id sunZoomPicker;
+    IBOutlet id planetZoomPicker;
+
 }
 -(void) drawSolarSystem;
 
