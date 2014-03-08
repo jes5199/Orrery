@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "POOpenGLView.h"
 
-@interface POAppDelegate : NSObject <NSApplicationDelegate>
+@interface POAppDelegate : NSObject <NSApplicationDelegate> {
+    NSTimer * timer;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet POOpenGLView *glview;
@@ -21,5 +23,6 @@
 - (IBAction) handleDateChange:(NSDatePicker*)picker;
 - (IBAction) handleNowChange:(NSButton*)checkbox;
 - (IBAction) handleGoFastChange:(NSButton*)gofast;
+- (void)windowWillClose:(NSNotification *)notification;
 
 @end

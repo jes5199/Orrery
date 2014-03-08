@@ -35,8 +35,15 @@ static void yellow ()
 
 static void sun ()
 {
+    GLfloat color[] = { 1.0, 0.85, 0.35, 1.0 };
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+    yellow();
+
     GLUquadric *quad = gluNewQuadric();
     gluSphere(quad, 0.2, 100, 100);
+    
+    GLfloat black[] = { 0.0, 0.0, 0.0, 1.0 };
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, black);
 }
 
 @implementation POOpenGLView
@@ -45,7 +52,7 @@ static void sun ()
 
 - (void) drawSolarSystem
 {
-    static tilt = 0;
+    static int tilt = 0;
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -63,10 +70,11 @@ static void sun ()
 
     gluLookAt (0.0, 0.0, 0.0, 0.0, 0.0, -100.0, 0.0, 1.0, 0.0);
     glScalef (1, 1, 1);
-    
-    glPushMatrix();
 
-    glTranslated(0,0,-20);
+    glPushMatrix();
+    
+    glTranslated(0,0,-80);
+
     int target_tilt = 0;
     if( [[[popup selectedItem] title] isEqualToString:@"Side"] ){
         target_tilt = 90;
@@ -78,18 +86,29 @@ static void sun ()
         tilt -= 5;
     }
     glRotated(tilt,1,0,0);
-
     
+
+
     glBegin(GL_QUAD_STRIP);
     {
-        yellow(); sun();
+        glDisable(GL_LIGHTING);
+        sun();
+        glEnable(GL_LIGHTING);
+        GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
+        glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+        
+
         [mercury drawForTime:elapsed_years];
         [venus drawForTime:elapsed_years];
         [earth drawForTime:elapsed_years];
         [mars drawForTime:elapsed_years];
     }
+    
+
     glEnd();
     glPopMatrix();
+    
+
 }
 
 
@@ -101,23 +120,34 @@ static void sun ()
     int max = w; if(h > max){max = h;}
     int min = w; if(h < min){min = h;}
     
-    double zoom = 2;
+    double zoom = 1.5;
     
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     
-    glMatrixMode (GL_PROJECTION);
     glEnable(GL_AUTO_NORMAL);
     glEnable(GL_NORMALIZE);
+    glEnable(GL_COLOR_MATERIAL);
+
+    glShadeModel (GL_SMOOTH);
+    
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc (GL_LESS);
 
-    glLoadIdentity ();
     
     // this is the interesting part: center the drawing in the window, expand to fit shorter edge
-    //gluOrtho2D ((GLdouble) -w/min, (GLdouble) w/min, (GLdouble)-h/min, (GLdouble) h/min);
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+
     glOrtho((GLdouble) -zoom*w/min, (GLdouble) zoom*w/min, (GLdouble)-zoom*h/min, (GLdouble) zoom*h/min, 1, 100);
+    glMatrixMode (GL_MODELVIEW);
+    glLoadIdentity ();
+
+
+    //glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     
+
 }
 
 - (void)drawRect:(NSRect)dirtyRect

@@ -14,11 +14,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [NSTimer scheduledTimerWithTimeInterval:0.1
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1
                                      target:self
-                                   selector:@selector(handleSecondsTimer:)
-                                   userInfo:nil
-                                    repeats:YES];
+                                     selector:@selector(handleSecondsTimer:)
+                                     userInfo:nil
+                                     repeats:YES];
 
 }
 
@@ -27,6 +27,7 @@
     if ([[self checkboxNow] state]) {
         [[self datePicker] setDateValue:[NSDate date]];
     }
+    
     if ([[self checkboxGoFast] state]) {
         NSDate *was = [[self datePicker] dateValue];
         [[self datePicker] setDateValue:[was dateByAddingTimeInterval: 7*60*60*24]];
@@ -52,11 +53,17 @@
     }
 }
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+    [timer invalidate];
+    timer = nil;
+}
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return YES;
 }
+
 
 
 @end
