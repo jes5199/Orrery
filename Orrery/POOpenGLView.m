@@ -10,6 +10,8 @@
 #import "POPlanet.h"
 #import "POMars.h"
 #import "POVenus.h"
+#import "POMercury.h"
+
 
 #import <OpenGL/glu.h>
 
@@ -43,16 +45,17 @@ static void sun ()
 
 - (void) drawSolarSystem
 {
-    double epoch = [[NSDate dateWithString:@"January 1, 2000, 11:58:55.816 UTC"] timeIntervalSince1970];
-    double nowish = [[NSDate date] timeIntervalSince1970];
-    nowish = [[datePicker dateValue] timeIntervalSince1970];
+    double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
+    double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
     double elapsed_seconds = (nowish - epoch);
-    double elapsed_years = elapsed_seconds / 31557600;
+    double elapsed_days = elapsed_seconds / 86400;
+    double elapsed_years = elapsed_days / 365.25;
     
+    POPlanet *mercury = [POMercury new];
+    POPlanet *venus = [POVenus new];
     POPlanet *earth = [POPlanet new];
     POPlanet *mars = [POMars new];
-    POPlanet *venus = [POVenus new];
     
     glEnableClientState(GL_VERTEX_ARRAY);
     glShadeModel (GL_FLAT);
@@ -66,6 +69,7 @@ static void sun ()
     glBegin(GL_QUAD_STRIP);
     {
         yellow(); sun();
+        [mercury drawForTime:elapsed_years];
         [venus drawForTime:elapsed_years];
         [earth drawForTime:elapsed_years];
         [mars drawForTime:elapsed_years];

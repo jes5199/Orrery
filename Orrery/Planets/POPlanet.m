@@ -120,6 +120,7 @@ static double degrees(double radians)
     NSArray *vector = @[[NSNumber numberWithDouble:x_ecl],
                         [NSNumber numberWithDouble:y_ecl],
                         [NSNumber numberWithDouble:z_ecl]];
+
     return vector;
 }
 
