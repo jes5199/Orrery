@@ -12,6 +12,7 @@
 @interface POOpenGLView : NSOpenGLView {
     IBOutlet id datePicker;
     IBOutlet id popup;
+    IBOutlet id sunZoomPicker;
 }
 -(void) drawSolarSystem;
 

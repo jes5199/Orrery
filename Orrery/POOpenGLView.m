@@ -88,7 +88,7 @@ static void sun (double scale)
 
     glBegin(GL_QUAD_STRIP);
     {
-        double sun_scale = 50;
+        double sun_scale = [[sunZoomPicker selectedItem] tag];
         double planet_scale = 2000;
         sun(sun_scale);
         GLfloat light_position[] = { 0.0, 0.0, 0.0, 1.0 };
