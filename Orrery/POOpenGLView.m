@@ -120,7 +120,7 @@ static void sun ()
     int max = w; if(h > max){max = h;}
     int min = w; if(h < min){min = h;}
     
-    double zoom = 1.5;
+    double zoom = 1.7;
     
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     
