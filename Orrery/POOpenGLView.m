@@ -71,6 +71,8 @@ int animateTowardDesiredScale(int scale, int desired_scale){
     static int tilt = 0;
     static int sun_scale = 50;
     static int planet_scale = 2000;
+    static int moon_scale = 100;
+
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
     
@@ -109,11 +111,12 @@ int animateTowardDesiredScale(int scale, int desired_scale){
 
     sun_scale = animateTowardDesiredScale(sun_scale, [[sunZoomPicker selectedItem] tag]);
     planet_scale = animateTowardDesiredScale(planet_scale, [[planetZoomPicker selectedItem] tag]);
+    moon_scale = animateTowardDesiredScale(moon_scale, [[moonOrbPicker selectedItem] tag]);
 
     sun(sun_scale);
     
     for (POPlanet* planet in planets){
-        [planet drawForTime:elapsed_years atScale:planet_scale moonScale:100];
+        [planet drawForTime:elapsed_years atScale:planet_scale moonScale:moon_scale];
     }    
 
     glPopMatrix();
