@@ -109,9 +109,9 @@ int animateTowardDesiredScale(int scale, int desired_scale){
     glRotated(tilt,1,0,0);
     
 
-    sun_scale = animateTowardDesiredScale(sun_scale, [[sunZoomPicker selectedItem] tag]);
-    planet_scale = animateTowardDesiredScale(planet_scale, [[planetZoomPicker selectedItem] tag]);
-    moon_scale = animateTowardDesiredScale(moon_scale, [[moonOrbPicker selectedItem] tag]);
+    sun_scale = animateTowardDesiredScale(sun_scale, (int) [[sunZoomPicker selectedItem] tag]);
+    planet_scale = animateTowardDesiredScale(planet_scale, (int) [[planetZoomPicker selectedItem] tag]);
+    moon_scale = animateTowardDesiredScale(moon_scale, (int) [[moonOrbPicker selectedItem] tag]);
 
     sun(sun_scale);
     

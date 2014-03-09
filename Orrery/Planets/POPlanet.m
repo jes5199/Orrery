@@ -95,8 +95,8 @@ static double degrees(double radians)
     double mean_anomaly = mean_longitude - longitude_of_perihelion;
     
     double eccentric_anomaly = newton_calculate_eccentric_anomaly(mean_anomaly, eccentricity);
-    double true_anomaly = 2 * atan( sqrt((1+eccentricity) / (1-eccentricity)) * tan(eccentric_anomaly/2) );
-    double radial_distance = semi_major_axis * ( 1 - eccentricity*eccentricity ) / ( 1 + eccentricity*cos(true_anomaly));
+    //double true_anomaly = 2 * atan( sqrt((1+eccentricity) / (1-eccentricity)) * tan(eccentric_anomaly/2) );
+    //double radial_distance = semi_major_axis * ( 1 - eccentricity*eccentricity ) / ( 1 + eccentricity*cos(true_anomaly));
     //NSLog(@"radial distatance: %f", radial_distance);
     //NSLog(@"rotation: %f", degrees(true_anomaly));
     
