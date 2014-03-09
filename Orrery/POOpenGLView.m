@@ -71,7 +71,7 @@ int animateTowardDesiredScale(int scale, int desired_scale){
     static int tilt = 0;
     static int sun_scale = 50;
     static int planet_scale = 2000;
-    static int moon_scale = 100;
+    static int moon_scale = 50;
 
     double epoch = [[NSDate dateWithString:@"2000-01-01 11:58:56 +0000"] timeIntervalSince1970];
     double nowish = [[datePicker dateValue] timeIntervalSince1970];
