@@ -21,10 +21,13 @@
 
 - (void) drawForTime:(double)years atScale:(double)scale spaceScale:(double)space_scale moonScale:(double)moon_scale
 {
+    // FIXME: Earth should actually be offset slightly to the other side of the barycenter
     [earth drawForTime:years atScale:scale spaceScale:space_scale moonScale:moon_scale];
     
     glPushMatrix();
     
+    // I'm relying on the default implementation of POPlanet
+    // which uses the Earth-Moon barycenter's kepler values 
     NSArray *coordinates = [self coordinatesAtTime:years];
     
     double x = [[coordinates objectAtIndex:0] doubleValue] * space_scale;
