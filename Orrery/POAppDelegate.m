@@ -16,21 +16,29 @@
 {
     timer = [NSTimer scheduledTimerWithTimeInterval:0.1
                                      target:self
-                                     selector:@selector(handleSecondsTimer:)
+                                     selector:@selector(handleAnimationTimer:)
                                      userInfo:nil
                                      repeats:YES];
 
 }
 
-- (void) handleSecondsTimer:(NSTimer*)timer
+- (void) handleAnimationTimer:(NSTimer*)timer
 {
     if ([[self checkboxNow] state]) {
         [[self datePicker] setDateValue:[NSDate date]];
-    }
-    
-    if ([[self checkboxGoFast] state]) {
-        NSDate *was = [[self datePicker] dateValue];
-        [[self datePicker] setDateValue:[was dateByAddingTimeInterval: 7*60*60*24]];
+        
+    } else if([[self speedBox] indexOfSelectedItem]){
+        NSDate *old_time = [[self datePicker] dateValue];
+        NSDate *new_time;
+        
+        switch([[self speedBox] indexOfSelectedItem]){
+            case 1:new_time = [old_time dateByAddingTimeInterval: 0.1]; break;
+            case 2:new_time = [old_time dateByAddingTimeInterval: 60*60]; break;
+            case 3:new_time = [old_time dateByAddingTimeInterval: 60*60*24]; break;
+            case 4:new_time = [old_time dateByAddingTimeInterval: 60*60*24*7]; break;
+        }
+        [[self datePicker] setDateValue:new_time];
+
     }
     [[self glview] setNeedsDisplay:YES];
 }
@@ -39,17 +47,17 @@
     [[self checkboxNow] setState:0];
 }
 
-- (IBAction) handleGoFastChange:(NSButton*)gofast{
-    if ([[self checkboxGoFast] state]) {
-        [[self checkboxNow] setState:0];
-    }
+- (IBAction) handleSpeedChange:(NSButton*)gofast{
+    [[self checkboxNow] setState:0];
 }
 
 
 - (IBAction) handleNowChange:(NSButton*)checkbox{
     if ([checkbox state]) {
         [[self datePicker] setDateValue:[NSDate date]];
-        [[self checkboxGoFast] setState:0];
+        [[self speedBox] selectItemAtIndex:1];
+    } else {
+        [[self speedBox] selectItemAtIndex:0];
     }
 }
 
