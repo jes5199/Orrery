@@ -8,20 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415936945.952485"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "20"
-         endingLineNumber = "20"
-         landmarkName = "drawAnObject()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415936945.952485"
+         timestampString = "416040030.276387"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "21"
@@ -34,11 +21,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415999315.562696"
+         timestampString = "416040030.276387"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "22"
+         endingLineNumber = "22"
+         landmarkName = "drawAnObject()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Orrery/POOpenGLView.m"
+         timestampString = "416040030.276387"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415999315.562696"
+         timestampString = "416040030.276387"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "125"
-         endingLineNumber = "125"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/POOpenGLView.m"
-         timestampString = "415999315.562696"
+         timestampString = "416040030.276387"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "-reshape"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Orrery/Planets/POPlanet.h"
-         timestampString = "415933620.895352"
+         timestampString = "416041378.045434"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "18"
-         endingLineNumber = "18"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
          landmarkName = "-eccentricity:"
          landmarkType = "4">
       </FileBreakpoint>
@@ -158,6 +158,19 @@
          endingLineNumber = "26"
          landmarkName = "-windowWillClose:"
          landmarkType = "4">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Orrery/Planets/POMoon.m"
+         timestampString = "416039988.70177"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "24"
+         endingLineNumber = "24"
+         landmarkName = "-coordinatesAtTime:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

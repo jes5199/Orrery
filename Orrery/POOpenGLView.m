@@ -11,6 +11,7 @@
 #import "POMars.h"
 #import "POVenus.h"
 #import "POMercury.h"
+#import "POEarthMoonSystem.h"
 
 
 #import <OpenGL/glu.h>
@@ -79,7 +80,7 @@ int animateTowardDesiredScale(int scale, int desired_scale){
     
     POPlanet *mercury = [POMercury new];
     POPlanet *venus = [POVenus new];
-    POPlanet *earth = [POPlanet new];
+    POPlanet *earth = [POEarthMoonSystem new];
     POPlanet *mars = [POMars new];
     NSArray *planets = @[ mercury, venus, earth, mars ];
     
@@ -112,7 +113,7 @@ int animateTowardDesiredScale(int scale, int desired_scale){
     sun(sun_scale);
     
     for (POPlanet* planet in planets){
-        [planet drawForTime:elapsed_years atScale:planet_scale];
+        [planet drawForTime:elapsed_years atScale:planet_scale moonScale:100];
     }    
 
     glPopMatrix();

@@ -143,14 +143,14 @@ static double degrees(double radians)
     return [self meanRadius] / (149597871/scale); // km to astronomical units
 }
 
-- (void) drawForTime:(double)years atScale:(double)scale
+- (void) drawForTime:(double)years atScale:(double)scale spaceScale:(double)space_scale moonScale:(double)moon_scale
 {
     NSArray *coordinates = [self coordinatesAtTime:years];
     NSArray *color = [self color];
 
-    double x = [[coordinates objectAtIndex:0] doubleValue];
-    double y = [[coordinates objectAtIndex:1] doubleValue];
-    double z = [[coordinates objectAtIndex:2] doubleValue];
+    double x = [[coordinates objectAtIndex:0] doubleValue] * space_scale;
+    double y = [[coordinates objectAtIndex:1] doubleValue] * space_scale;
+    double z = [[coordinates objectAtIndex:2] doubleValue] * space_scale;
     
     double radius = [self radiusAtScale:scale];
 
@@ -164,6 +164,23 @@ static double degrees(double radians)
     GLUquadric *quad = gluNewQuadric();
     gluSphere(quad, radius, 100, 100);
     glPopMatrix();
+
+}
+
+- (void) drawForTime:(double)years atScale:(double)scale
+{
+    [self drawForTime:years atScale:scale spaceScale:1.0 moonScale:1.0];
+}
+
+- (void) drawForTime:(double)years atScale:(double)scale spaceScale:(double)space_scale
+{
+    [self drawForTime:years atScale:scale spaceScale:space_scale moonScale:1.0];
+}
+
+
+- (void) drawForTime:(double)years atScale:(double)scale moonScale:(double)moon_scale
+{
+    [self drawForTime:years atScale:scale spaceScale:1.0 moonScale:moon_scale];
 
 }
 @end

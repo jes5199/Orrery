@@ -13,6 +13,9 @@
 - (NSArray*) coordinatesAtTime: (double)elapsed_time;
 - (NSArray*) color;
 - (void) drawForTime:(double)years atScale:(double)scale;
+- (void) drawForTime:(double)years atScale:(double)scale spaceScale:(double)space_scale;
+- (void) drawForTime:(double)years atScale:(double)scale moonScale:(double)moon_scale;
+- (void) drawForTime:(double)years atScale:(double)scale spaceScale:(double)space_scale moonScale:(double)moon_scale;
 
 - (double) semiMajorAxisAt:(double) centuries;
 - (double) eccentricity:(double) centuries;
