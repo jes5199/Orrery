@@ -33,9 +33,9 @@
         
         switch([[self speedBox] indexOfSelectedItem]){
             case 1:new_time = [old_time dateByAddingTimeInterval: 0.1]; break;
-            case 2:new_time = [old_time dateByAddingTimeInterval: 60*60]; break;
-            case 3:new_time = [old_time dateByAddingTimeInterval: 60*60*24]; break;
-            case 4:new_time = [old_time dateByAddingTimeInterval: 60*60*24*7]; break;
+            case 2:new_time = [old_time dateByAddingTimeInterval: 60*60*0.1]; break;
+            case 3:new_time = [old_time dateByAddingTimeInterval: 60*60*24*0.1]; break;
+            case 4:new_time = [old_time dateByAddingTimeInterval: 60*60*24*7*0.1]; break;
         }
         [[self datePicker] setDateValue:new_time];
 
