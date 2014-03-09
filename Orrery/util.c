@@ -12,3 +12,13 @@ double radians(double degrees)
 {
     return fmod((M_PI * degrees / 180), 2*M_PI);
 }
+
+double dsin(double degrees)
+{
+    return sin(radians(degrees));
+}
+
+double dcos(double degrees)
+{
+    return sin(radians(degrees));
+}

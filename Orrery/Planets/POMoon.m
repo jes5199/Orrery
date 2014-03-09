@@ -23,30 +23,28 @@
     double centuries = elapsed_time / 100.0;
     
     
-    // wow. The effect is too disturbing to have all these wobbles amplified 100x
-    // so I've just commented them right out!
     double ecliptic_longitude = radians(
                                         218.32 + 481267.881 * centuries
-//                                        + 6.29 * sin(135.0 + 477198.87 * centuries)
-//                                        - 1.27 * sin(259.3 - 413335.36 * centuries)
-//                                        + 0.66 * sin(235.7 + 890534.22 * centuries)
-//                                        + 0.21 * sin(269.9 + 954397.74 * centuries)
-//                                        - 0.19 * sin(357.5 + 35999.05 * centuries)
-//                                        - 0.11 * sin(186.5 + 966404.03 * centuries)
+                                        + 6.29 * dsin(135.0 + 477198.87 * centuries)
+                                        - 1.27 * dsin(259.3 - 413335.36 * centuries)
+                                        + 0.66 * dsin(235.7 + 890534.22 * centuries)
+                                        + 0.21 * dsin(269.9 + 954397.74 * centuries)
+                                        - 0.19 * dsin(357.5 +  35999.05 * centuries)
+                                        - 0.11 * dsin(186.5 + 966404.03 * centuries)
                                         );
     double ecliptic_latitude = radians(
-                                       + 5.13 * sin( 93.3 + 483202.02 * centuries)
-//                                       + 0.28 * sin(228.2 + 960400.89 * centuries)
-//                                       - 0.28 * sin(318.3 +   6003.15 * centuries)
-//                                       - 0.17 * sin(217.6 - 407332.21 * centuries)
+                                       + 5.13 * dsin( 93.3 + 483202.03 * centuries)
+                                       + 0.28 * dsin(228.2 + 960400.89 * centuries)
+                                       - 0.28 * dsin(318.3 +   6003.15 * centuries)
+                                       - 0.17 * dsin(217.6 - 407332.21 * centuries)
                                        );
     
     double horizontal_parallax = radians(
                                          + 0.9508
-//                                         + 0.0518 * cos(135.0 + 477198.87 * centuries)
-//                                         + 0.0095 * cos(259.3 - 413335.36 * centuries)
-//                                         + 0.0078 * cos(235.7 + 890534.22 * centuries)
-//                                         + 0.0028 * cos(269.9 + 954397.74 * centuries)
+                                         + 0.0518 * dcos(135.0 + 477198.87 * centuries)
+                                         + 0.0095 * dcos(259.3 - 413335.36 * centuries)
+                                         + 0.0078 * dcos(235.7 + 890534.22 * centuries)
+                                         + 0.0028 * dcos(269.9 + 954397.74 * centuries)
                                          );
         
     // I'm skipping the precession correction right now, it's not included in the Almanac

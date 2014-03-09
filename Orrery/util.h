@@ -10,5 +10,8 @@
 #define Orrery_util_h
 
 double radians(double degrees);
+double dsin(double degrees);
+double dcos(double degrees);
+
 
 #endif
